@@ -1,5 +1,6 @@
 package com.example.either.controller;
 
+import com.example.either.dto.AnswerDto;
 import com.example.either.dto.QuestionDto;
 import com.example.either.entity.Answer;
 import com.example.either.entity.Question;
@@ -43,13 +44,6 @@ public class QuestionController {
     // 질문 생성 처리
     @PostMapping
     public String create(@ModelAttribute Question question) {
-        /*
-        @ModelAttribute
-        - 내부적으로 Post 엔티티 객체를 생성
-        - Post post = new Post("hi", "hello");
-        - 사용자가 입력한 HTML의 title과 content를 Post 객체의 title과 content에 매핑
-        - 이후 아래의 코드를 실행
-        */
         questionService.createQuestion(question);
         return "redirect:/questions";
     }
@@ -60,8 +54,12 @@ public class QuestionController {
         Model model
     ) {
         Question question = questionService.findById(id);
+        List<Answer> answers = question.getAnswers();
+
         model.addAttribute("question", question);
-        model.addAttribute("answer", new Answer());
+        model.addAttribute("answer", new AnswerDto());
+        model.addAttribute("answers", answers);
+
         return "question/detail";
     }
 
@@ -84,7 +82,6 @@ public class QuestionController {
         - 이후 아래의 코드를 실행
         */
         answerService.createAnswer(id, answer);
-        System.out.println("-----------------");
         return "redirect:/questions/" + id;
     }
 

@@ -19,7 +19,7 @@
     <hr>
 
     <h3>투표하기</h3>
-    <h4>선택</h4>
+    <p>선택</p>
     <form th:action="@{/questions/{id}(id=${question.id})}"
           th:object="${answer}"
           method="post"
@@ -30,7 +30,7 @@
         <option value="B">B</option>
       </select>
 
-      <h4>의견</h4>
+      <p>의견</p>
       <label>
         <input type="text" th:field="*{content}">
       </label>
@@ -40,7 +40,9 @@
 
     <h3>투표 결과</h3>
     <div>
-
+      <span th:each="answer : ${answers}">
+        <p th:text="${answer.answerText} + '-' + ${answer.content}"></p>
+      </span>
     </div>
 
 </body>

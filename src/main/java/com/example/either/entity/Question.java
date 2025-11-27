@@ -36,4 +36,15 @@ public class Question {
     )
     private List<Answer> answers = new ArrayList<>();
 
+
+    public void addAnswer(Answer answer) {
+        answers.add(answer);
+        answer.setQuestion(this);
+    }
+
+    public void removeAnswer(Answer answer) {
+        answers.remove(answer);
+        answer.setQuestion(null);
+    }
+
 }

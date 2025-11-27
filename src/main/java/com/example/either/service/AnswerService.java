@@ -1,6 +1,7 @@
 package com.example.either.service;
 
 import com.example.either.entity.Answer;
+import com.example.either.entity.Question;
 import com.example.either.repository.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,12 +18,12 @@ public class AnswerService {
     // 답변 생성
     @Transactional
     public Answer createAnswer(Long id, Answer answer) {
-
-        // 질문 존재 여부 검증
-        questionService.findById(id);
+        Question question = questionService.findById(id);
+        question.addAnswer(answer);
 
         return answerRepository.save(answer);
     }
+
 
 
 }
