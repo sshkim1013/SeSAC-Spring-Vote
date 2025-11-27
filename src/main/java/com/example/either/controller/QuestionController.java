@@ -68,10 +68,9 @@ public class QuestionController {
     // =============== [ Answer Part ] ===============
     // ================================================
 
-
-    @PostMapping("/{id}")
+    @PostMapping("/{questionId}")
     public String createAnswer(
-        @PathVariable Long id,
+        @PathVariable Long questionId,
         @ModelAttribute Answer answer
     ) {
         /*
@@ -81,8 +80,8 @@ public class QuestionController {
         - 이후 아래의 코드를 실행
         */
 //        answer.setId(null);
-        answerService.createAnswer(id, answer);
-        return "redirect:/questions/" + id;
+        answerService.createAnswer(questionId, answer);
+        return "redirect:/questions/" + questionId;
     }
 
 }
