@@ -19,8 +19,13 @@ public class QuestionService {
         return questionRepository.findAll();
     }
 
-
     public Question findById(Long id) {
-        return questionRepository.findById(id).orElseThrow();
+        return questionRepository.findById(id)
+            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 질문입니다."));
+    }
+
+    @Transactional
+    public Question createQuestion(Question question) {
+        return questionRepository.save(question);
     }
 }

@@ -7,18 +7,23 @@
 <body>
 <h1>새 질문 만들기</h1>
 
-<form th:action=""
+<form action="/questions"
       th:object="${question}" method="post">
-  <label for="title">제목 : </label>
-  <input type="text" th:field="*{title}" id="title">
-
-  <label for="title">제목 : </label>
-  <input type="text" th:field="*{optionA}" id="optionA">
-
-  <label for="title">제목 : </label>
-  <input type="text" th:field="*{optionB}" id="optionB">
-
+    <div>
+      <label for="title">질문</label>
+      <input type="text" th:field="*{title}" id="title">
+    </div>
+    <div>
+      <label for="title">선택지 A</label>
+      <input type="text" th:field="*{optionA}" id="optionA">
+    </div>
+    <div>
+      <label for="title">선택지 B</label>
+      <input type="text" th:field="*{optionB}" id="optionB">
+    </div>
   <button type="submit">질문 등록</button>
+
+  <a href="/questions"></a>
 
 </form>
 </body>
