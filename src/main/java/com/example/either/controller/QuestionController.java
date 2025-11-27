@@ -27,7 +27,6 @@ public class QuestionController {
     // 질문 목록 조회
     @GetMapping
     public String list(Model model) {
-
         List<Question> questions = questionService.findAll();
         model.addAttribute("questions", questions);
 
@@ -78,9 +77,10 @@ public class QuestionController {
         /*
         @ModelAttribute
         - 내부적으로 Answer 엔티티 객체를 생성
-        - 사용자가 입력한 HTML의 title과 content를 Answer 객체의 content에 매핑
+        - 사용자가 입력한 HTML의 answerText content를 Answer 객체의 content에 매핑
         - 이후 아래의 코드를 실행
         */
+//        answer.setId(null);
         answerService.createAnswer(id, answer);
         return "redirect:/questions/" + id;
     }

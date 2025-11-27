@@ -26,15 +26,27 @@
     >
       <select th:field="*{answerText}" required>
         <option value="" selected>=== 선택하세요 ===</option>
-        <option value="A">A</option>
-        <option value="B">B</option>
+        <option value="A">
+          <p th:text="${question.optionA} + '(A)'"></p>
+        </option>
+        <option value="B">
+          <p th:text="${question.optionB} + '(B)'"></p>
+        </option>
       </select>
 
       <p>의견</p>
-      <label>
-        <input type="text" th:field="*{content}">
-      </label>
-        <button type="submit">투표하기</button>
+      <label for="content"></label>
+      <textarea rows="3"
+                th:field="*{content}"
+                id="content"
+                placeholder="선택 이유를 적어주세요"
+      >
+      </textarea>
+
+        <br>
+        <br>
+
+      <button type="submit">투표하기</button>
     </form>
     <hr>
 
